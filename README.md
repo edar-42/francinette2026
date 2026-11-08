@@ -104,7 +104,7 @@ Francinette asks you when there is a new version. You can also force it:
 If that does not work:
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette-2026/master/bin/update.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
 ```
 
 > :warning: Updating does a `git reset --hard`: any local change you made in `~/francinette` will be lost.
