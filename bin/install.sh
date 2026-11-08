@@ -8,7 +8,7 @@ cd temp_____ || exit
 rm -rf francinette
 
 # download github
-git clone --recursive https://github.com/edar-42/francinette-2026.git francinette
+git clone --recursive https://github.com/edar-42/francinette2026.git francinette
 
 # install the system packages only if something is missing (no sudo needed at 42)
 has_tools() {

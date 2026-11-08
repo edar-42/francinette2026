@@ -4,6 +4,7 @@ from pathlib import Path
 
 from halo import Halo
 
+from testers.AutoTester import PushSwapAutoTester
 from testers.BaseTester import BaseTester, run_command
 from testers.push_swap.Fsoares import Fsoares
 from utils import SubjectChecks as sc
@@ -19,7 +20,7 @@ class PushSwap(BaseTester):
 
 	name = "push_swap"
 	my_tester = Fsoares
-	testers = [Fsoares]
+	testers = [Fsoares, PushSwapAutoTester]
 	timeout = 10
 
 	allowed_functions = {"read", "write", "malloc", "free", "exit"}

@@ -1,6 +1,7 @@
 import logging
 from pathlib import Path
 
+from testers.AutoTester import PrintfAutoTester
 from testers.BaseTester import BaseTester
 from testers.printf.Cacharle import Cacharle
 from testers.printf.Fsoares import Fsoares
@@ -18,7 +19,7 @@ class Printf(BaseTester):
 
 	name = "printf"
 	my_tester = Fsoares
-	testers = [Tripouille, UnitTest, Cacharle, Fsoares]
+	testers = [Tripouille, UnitTest, Cacharle, Fsoares, PrintfAutoTester]
 	timeout = 2
 
 	def __init__(self, info: TestRunInfo) -> None:

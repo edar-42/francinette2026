@@ -31,7 +31,17 @@ cases: what should it return for `""`, `"   "` or `"word"`? Don't rely only on `
 
 ## What's new
 
-Version **0.10.0** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
+Version **0.11.0** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
+
+#### :new: 42-auto-tester
+The single-file testers of [42-auto-tester](https://github.com/Elwynn18/42-auto-tester), by [Elwynn18](https://github.com/Elwynn18), are now executed with the other testers for `libft`, `ft_printf`, `get_next_line` and `push_swap`.
+- It is the last tester in the list, so the numbers of `--testers` did not change
+- Run only this one with `paco -t 5` (`libft`, `ft_printf`), `paco -t 3` (`get_next_line`) or `paco -t 2` (`push_swap`)
+- `paco split itoa` (libft), `paco d x` (ft_printf), `paco 1 42` (BUFFER_SIZEs of get_next_line) and `paco sort perf` (push_swap) are passed to it
+- Its norminette and submission checks always run when no filter is passed: `-in` and `-is` do not apply to it
+- On `get_next_line`, `-m` and `-b` do not filter it: the bonus is tested whenever its files are present
+- `--strict` alone only executes fsoares, like before: use `--strict -t 5` to execute it too
+- Maintainers: `bin/sync_auto_tester.sh` updates the scripts from its repository
 
 #### :new: push_swap tester (subject v1.2)
 - Detected automatically (Makefile with `NAME = push_swap`)
@@ -88,7 +98,7 @@ the 42 computers), nothing is installed with `sudo`. On your own Linux computer,
 missing and you are an admin, the installer installs it for you.
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette-2026/master/bin/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/install.sh)"
 ```
 
 The francinette folder will be in your `$HOME` directory (`~/francinette`).
@@ -207,4 +217,5 @@ Then open a new terminal.
 * To [jtoty](https://github.com/jtoty) and [y3ll0w42](https://github.com/y3ll0w42) for [libft-war-machine](https://github.com/y3ll0w42/libft-war-machine)
 * To [alelievr](https://github.com/alelievr) for [libft-unit-test](https://github.com/alelievr/libft-unit-test) and [printf-unit-test](https://github.com/alelievr/printf-unit-test)
 * To [cacharle](https://github.com/cacharle) for [ft_printf_test](https://github.com/cacharle/ft_printf_test)
+* To [Elwynn18](https://github.com/Elwynn18) (Theodore Bailly) for [42-auto-tester](https://github.com/Elwynn18/42-auto-tester)
 * To [ombhd](https://github.com/ombhd) for [Cleaner_42](https://github.com/ombhd/Cleaner_42)

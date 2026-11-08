@@ -5,6 +5,7 @@ import shutil
 from pathlib import Path
 
 from halo import Halo
+from testers.AutoTester import LibftAutoTester
 from testers.BaseTester import BaseTester, run_command
 from testers.libft.Alelievr import Alelievr
 from testers.libft.BaseExecutor import (BONUS_FUNCTIONS, PART_1_FUNCTIONS,
@@ -25,7 +26,7 @@ class Libft(BaseTester):
 
 	name = "libft"
 	my_tester = Fsoares
-	testers = [WarMachine, Tripouille, Alelievr, Fsoares]
+	testers = [WarMachine, Tripouille, Alelievr, Fsoares, LibftAutoTester]
 	timeout = 2
 
 	def __init__(self, info: TestRunInfo) -> None:

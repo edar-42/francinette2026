@@ -1,3 +1,9 @@
+## 0.11.0 (2026-11-08) — 42-auto-tester
+
+### Feat
+
+- **all projects**: new tester, [42-auto-tester](https://github.com/Elwynn18/42-auto-tester) by [Elwynn18](https://github.com/Elwynn18), executed on a clean copy of the sources. `bin/sync_auto_tester.sh` updates its scripts
+
 ## 0.10.0 (2026-11-08) — new subjects
 
 ### Feat

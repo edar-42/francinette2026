@@ -12,7 +12,7 @@ rm -rf francinette
 
 # download github
 echo "Downloading francinette repo..."
-git clone --quiet --recursive https://github.com/edar-42/francinette-2026.git francinette 2> /dev/null
+git clone --quiet --recursive https://github.com/edar-42/francinette2026.git francinette 2> /dev/null
 
 cp -r francinette .. 2> /dev/null
 

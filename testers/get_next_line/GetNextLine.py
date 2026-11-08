@@ -1,6 +1,7 @@
 import logging
 import re
 from pathlib import Path
+from testers.AutoTester import GnlAutoTester
 from testers.BaseTester import BaseTester
 from testers.get_next_line.Fsoares import Fsoares
 
@@ -17,7 +18,7 @@ class GetNextLine(BaseTester):
 
 	name = "get_next_line"
 	my_tester = Fsoares
-	testers = [Tripouille, Fsoares]
+	testers = [Tripouille, Fsoares, GnlAutoTester]
 	timeout = 10
 
 	def __init__(self, info: TestRunInfo) -> None:
