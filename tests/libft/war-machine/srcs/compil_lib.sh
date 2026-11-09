@@ -50,8 +50,7 @@ func_compil_lib()
 			printf "\033[26Gfclean"
 			printf "\033[39Gre"
 			printf "\033[52Gclean"
-			printf "\033[64Gbonus"
-			printf "\033[74Glibft.a\n"
+			printf "\033[64Glibft.a\n"
 		# fi
 
 			rm -f "${PATH_LIBFT}"/ft_*.o
@@ -135,32 +134,15 @@ func_compil_lib()
 
 		rm -f "${PATH_LIBFT}"/ft_*.o
 		rm -f "${PATH_LIBFT}"/libft.a
-		printf "\n$> make bonus\n" >> "${PATH_DEEPTHOUGHT}"/deepthought
-		make --no-print-directory -C "${PATH_LIBFT}" bonus>>"${PATH_DEEPTHOUGHT}"/deepthought 2>&1
-		result_bonus=1
-		if [ -z "$(grep -w bonus "${PATH_LIBFT}"/${MAKEFILE_VAR} | tr -d ' ' | tr -d '\t' | cut -d ':' -f 1 | grep -w bonus)" ]
-			then
-				printf "\033[64G${COLOR_FAIL}missing${DEFAULT}"
-				result_bonus=0
-			else
-				if [ -e "${PATH_LIBFT}"/libft.a ]
-				then
-					printf "\033[64G${COLOR_OK}ok${DEFAULT}"
-				else
-					printf "\033[64G${COLOR_FAIL}fail${DEFAULT}"
-					result_bonus=0
-				fi
-			fi
-		if [ $result_bonus -eq 0 ]; then
-			make --no-print-directory -C "${PATH_LIBFT}" all>>"${PATH_DEEPTHOUGHT}"/deepthought 2>&1
-		fi
+		printf "\n$> make all\n" >> "${PATH_DEEPTHOUGHT}"/deepthought
+		make --no-print-directory -C "${PATH_LIBFT}" all>>"${PATH_DEEPTHOUGHT}"/deepthought 2>&1
 		printf "\n$> ls -la libft.a\n" >> "${PATH_DEEPTHOUGHT}"/deepthought
 		ls -la "${PATH_LIBFT}"/libft.a >> "${PATH_DEEPTHOUGHT}"/deepthought
 		if [ -e "${PATH_LIBFT}"/libft.a ]
 		then
-			printf "\033[74G${COLOR_OK}found\n${DEFAULT}"
+			printf "\033[64G${COLOR_OK}found\n${DEFAULT}"
 		else
-			printf "\033[74G${COLOR_FAIL}not found\n${DEFAULT}"
+			printf "\033[64G${COLOR_FAIL}not found\n${DEFAULT}"
 		fi
 	fi
 }

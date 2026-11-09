@@ -1,3 +1,12 @@
+## 0.12.0 (2026-11-09) — libft without bonus
+
+### Feat
+
+- **libft**: the linked lists are mandatory. They are always tested, with `make all`, and the `bonus` rule is not
+  used or looked for anymore
+- **libft**: a function declared in `libft.h` that is not in `libft.a` is reported as missing, instead of making the
+  tests fail to link
+
 ## 0.11.2 (2026-11-09) — install
 
 ### Fix

@@ -73,6 +73,7 @@ class BaseTester:
 		shutil.copytree(self.source_dir, srcs_path)
 
 		all_funcs = self.select_tests_to_execute()
+		self.compile_source()
 		present = self.get_functions_present()
 		to_execute = intersection(all_funcs, present)
 
@@ -83,7 +84,6 @@ class BaseTester:
 		logger.info(f"To execute: {to_execute}")
 		logger.info(f"Missing: {missing}")
 
-		self.compile_source()
 		funcs_error = []
 		for tester in testers:
 			funcs_error.append(self.test_using(to_execute, missing, tester))

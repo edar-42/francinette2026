@@ -11,7 +11,7 @@ from typing import Set
 from halo import Halo
 from pexpect import run
 from testers.libft.BaseExecutor import remove_ansi_colors
-from utils.ExecutionContext import get_timeout, has_bonus, is_strict
+from utils.ExecutionContext import get_timeout, is_strict
 from utils.TerminalColors import TC
 from utils.Utils import is_linux, is_mac, open_ascii, show_errors_file
 from utils.TraceToLine import program_name_start
@@ -60,7 +60,7 @@ class Fsoares():
 			file.write(new_make)
 
 		os.chdir(other_dir)
-		command = "make re" + (" bonus" if has_bonus() else "")
+		command = "make re"
 		logger.info(f"Calling '{command}' on directory {os.getcwd()}")
 
 		to_execute = command.split(" ")
@@ -81,10 +81,11 @@ class Fsoares():
 
 			for func in self.to_execute:
 				strict = "-DSTRICT_MEM" if is_strict() else ""
-				bonus = " list_utils.c" if has_bonus() else ""
+				# list_utils.c needs t_list, that is not there if the lists were not done
+				lists = "list_utils.c" if any(f.startswith("lst") for f in self.to_execute) else ""
 				sanitize = "-fsanitize=address" if is_mac() else ""
 				command = (
-				    f"gcc -g {sanitize} {strict} -D TIMEOUT={get_timeout()} -Wall -Wextra -Werror -Wno-deprecated-declarations my_utils.c {bonus} "
+				    f"gcc -g {sanitize} {strict} -D TIMEOUT={get_timeout()} -Wall -Wextra -Werror -Wno-deprecated-declarations my_utils.c {lists} "
 				    + f"test_{func}.c utils/malloc_mock.c utils/utils.c -L. -lft -o test_{func}.out -ldl")
 				logger.info(f"executing {command}")
 				res = subprocess.run(command, shell=True, capture_output=True, text=True)

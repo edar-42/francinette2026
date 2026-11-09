@@ -7,8 +7,7 @@ import subprocess
 from sys import platform
 from halo import Halo
 from typing import List
-from testers.libft.BaseExecutor import BONUS_FUNCTIONS
-from utils.ExecutionContext import get_timeout, has_bonus
+from utils.ExecutionContext import get_timeout
 
 from utils.TerminalColors import TC
 from utils.Utils import decode_ascii, open_ascii
@@ -29,9 +28,6 @@ class Alelievr():
 		self.to_execute = to_execute
 		self.missing = list(missing)
 		self.tests_dir = os.path.join(tests_dir, self.folder)
-
-		if not has_bonus():
-			self.missing += BONUS_FUNCTIONS
 
 	def execute(self):
 		self.prepare_tests()

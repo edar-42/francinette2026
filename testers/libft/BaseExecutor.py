@@ -18,7 +18,7 @@ PART_2_FUNCTIONS = [
     "putnbr_fd"
 ]
 
-BONUS_FUNCTIONS = [
+LIST_FUNCTIONS = [
     "lstnew", "lstadd_front", "lstsize", "lstlast", "lstadd_back", "lstdelone", "lstclear", "lstiter", "lstmap"
 ]
 

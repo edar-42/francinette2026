@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import List
 
 from halo import Halo
-from testers.libft.BaseExecutor import (BONUS_FUNCTIONS, PART_1_FUNCTIONS,
+from testers.libft.BaseExecutor import (LIST_FUNCTIONS, PART_1_FUNCTIONS,
                                         PART_2_FUNCTIONS, remove_ansi_colors)
 from utils.ExecutionContext import get_timeout
 from utils.TerminalColors import TC
@@ -59,15 +59,15 @@ class WarMachine():
 	def get_command(self):
 		part1_inter = intersection(self.to_execute, PART_1_FUNCTIONS)
 		part2_inter = intersection(self.to_execute, PART_2_FUNCTIONS)
-		bonus_inter = intersection(self.to_execute, BONUS_FUNCTIONS)
+		list_inter = intersection(self.to_execute, LIST_FUNCTIONS)
 
 		logger.info(f"part1_funcs: {part1_inter}")
 		logger.info(f"part2_funcs: {part2_inter}")
-		logger.info(f"bonus_funcs: {bonus_inter}")
+		logger.info(f"list_funcs: {list_inter}")
 
 		force_makefile = " -l" if len(self.to_execute) < 5 else ""
 		return (f"./my_tester.sh " +
-		        f"\"{' '.join(part1_inter)}\" \"{' '.join(part2_inter)}\" \"{' '.join(bonus_inter)}\"" +
+		        f"\"{' '.join(part1_inter)}\" \"{' '.join(part2_inter)}\" \"{' '.join(list_inter)}\"" +
 		        f"{force_makefile} {get_timeout()} | tee war-machine.stdout")
 
 	def show_failed_test_code(self, func, tests):
@@ -77,7 +77,7 @@ class WarMachine():
 				return "Part1_functions"
 			if func in PART_2_FUNCTIONS:
 				return "Part2_functions"
-			if func in BONUS_FUNCTIONS:
+			if func in LIST_FUNCTIONS:
 				return "Bonus_functions"
 
 		def print_test_lines(lines, start, number):
