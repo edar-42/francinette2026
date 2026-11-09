@@ -4,19 +4,36 @@ An easy to use testing framework for the 42 projects, updated for the **2025/202
 
 Use `francinette` or `paco` inside a project folder to run it.
 
+## Install
+
 ```bash
-# Install
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/install.sh)"
-
-# Update
-francinette -u
-
-# Update, if the command above does not work
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
-
-# Run, inside a project folder
-paco
 ```
+
+It downloads the repo to `~/francinette`, creates the aliases and installs a Python virtual environment
+dedicated to this tool.
+
+No admin rights needed: if the C compiler, `make` and `python3-venv` are already installed (like on
+the 42 computers), nothing is installed with `sudo`. On your own Linux computer, if something is
+missing and you are an admin, the installer installs it for you.
+
+## Update
+
+Francinette asks you when there is a new version. You can also force it:
+
+```bash
+francinette -u
+```
+
+If that does not work (for example `Permission denied` on an install older than 0.11.0):
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
+```
+
+> :warning: Updating does a `git reset --hard`: any local change you made in `~/francinette` will be lost.
+
+## About
 
 Tests: `libft`, `ft_printf` (v12.1), `get_next_line` (v14.3) and `push_swap` (v1.2).
 
@@ -35,13 +52,11 @@ cases: what should it return for `""`, `"   "` or `"word"`? Don't rely only on `
 ## Table of Contents
 1. [What's new](#whats-new)
 2. [Purpose](#purpose)
-3. [Install](#install)
-4. [Update](#update)
-5. [Running](#running)
-6. [Uninstall](#uninstall)
-7. [FAQ](#faq)
-8. [Troubleshooting](#troubleshooting)
-9. [Acknowledgments](#acknowledgments)
+3. [Running](#running)
+4. [Uninstall](#uninstall)
+5. [FAQ](#faq)
+6. [Troubleshooting](#troubleshooting)
+7. [Acknowledgments](#acknowledgments)
 
 ## What's new
 
@@ -101,37 +116,6 @@ and execute the tests.
 #### Example execution:
 
 ![Example Image](doc/example.png)
-
-## Install
-
-Copy the line below to your terminal and execute it. It downloads the repo, creates the
-necessary folders and aliases, and installs a Python virtual environment dedicated to this tool.
-
-No admin rights needed: if the C compiler, `make` and `python3-venv` are already installed (like on
-the 42 computers), nothing is installed with `sudo`. On your own Linux computer, if something is
-missing and you are an admin, the installer installs it for you.
-
-```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/install.sh)"
-```
-
-The francinette folder will be in your `$HOME` directory (`~/francinette`).
-
-## Update
-
-Francinette asks you when there is a new version. You can also force it:
-
-```
-~ $> francinette -u              # Forces francinette to update
-```
-
-If that does not work (for example `Permission denied` on an install older than 0.11.0):
-
-```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
-```
-
-> :warning: Updating does a `git reset --hard`: any local change you made in `~/francinette` will be lost.
 
 ## Running
 
