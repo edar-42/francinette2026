@@ -49,7 +49,7 @@ const char		*forbidden_functions[] = {
 bool		single_bracket_on_line(char *line, int n)
 {
 	while (n--)
-		if (!isspace(line[n]) && (line[n] != '}' || line[n] != '{'))
+		if (!isspace(line[n]) && (line[n] != '}' && line[n] != '{'))
 			return false;
 	return true;
 }

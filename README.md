@@ -62,13 +62,14 @@ cases: what should it return for `""`, `"   "` or `"word"`? Don't rely only on `
 
 ## What's new
 
-Version **0.12.0** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
+Version **0.12.1** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
 
 #### :new: libft: the linked lists are mandatory
 The libft has no bonus part anymore, so the `ft_lst*` functions are always tested and `make all` must build them.
 - The `bonus` rule of the Makefile is not used anymore. Without it, nothing is reported as missing
 - A function that is not in `libft.a` after `make all` is listed in `Missing functions`
 - On `libft`, `-b` executes all the tests, like `-m`
+- The 5 testers test the linked lists, and all of them work again (see 0.12.1 in the changelog)
 
 #### :new: 42-auto-tester
 The single-file testers of [42-auto-tester](https://github.com/Elwynn18/42-auto-tester), by [Elwynn18](https://github.com/Elwynn18), are now executed with the other testers for `libft`, `ft_printf`, `get_next_line` and `push_swap`.

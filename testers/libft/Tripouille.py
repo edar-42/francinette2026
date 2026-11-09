@@ -72,12 +72,17 @@ class Tripouille():
 			print(output, end="")
 			return output
 
-		def parse_line(line):
+		def parse_line(line, function):
 			match = re.match(r"^(\w+)\s+:.*", line)
 			if (match):
-				func_name = match.group(1)
+				func_name = re.sub(r"^ft_", "", match.group(1))
 				res = [(int(m.group(1)), m.group(2)) for m in re.finditer(r"(\d+)\.(\w+)", line)]
+				# a leak is printed without a test number
+				if "LEAKS.KO" in line:
+					res.append((0, "LEAKS"))
 				return (func_name, res)
+			# nothing printed: the test program crashed before its first test
+			return (function, [(0, "CRASH")])
 
 		def get_command(function):
 			if is_linux():
@@ -92,7 +97,7 @@ class Tripouille():
 			p = subprocess.run(command, capture_output=True, text=True, shell=True)
 			logger.info(p)
 			output = get_output(p)
-			return parse_line(remove_ansi_colors(output))
+			return parse_line(remove_ansi_colors(output), function)
 
 		results = [execute_single_test(func) for func in self.to_execute]
 		spinner.stop()
@@ -126,7 +131,7 @@ class Tripouille():
 				print_error_lines(result)
 
 		def get_file_path(func):
-			return os.path.join(self.tests_dir, "tests", f"{func}_test.cpp")
+			return os.path.join(self.tests_dir, "tests", f"ft_{func}_test.cpp")
 
 		def has_failed(res):
 			failed = False

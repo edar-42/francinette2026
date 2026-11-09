@@ -1,3 +1,14 @@
+## 0.12.1 (2026-11-09) — libft testers
+
+### Fix
+
+- **libft-unit-test**: always failed (`No rule to make target 'all'`): its Makefile was missing. It is back, without
+  `make bonus`. Also fixed a condition that recent clang refuses (`-Wtautological-overlap-compare`)
+- **libftTester**: crashed before the first test with recent glibc (its malloc called `dlsym`, that calls malloc).
+  A test program that prints nothing, a leak (`LEAKS.KO`) and a failed function are now reported correctly
+- **libft-war-machine**: a test that did not compile was not reported as failed ("All tests passed"). The `ft_lstmap`
+  test did not compile with recent clang (`-Wunused-but-set-variable`)
+
 ## 0.12.0 (2026-11-09) — libft without bonus
 
 ### Feat

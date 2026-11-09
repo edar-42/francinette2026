@@ -15,7 +15,7 @@ from utils.Utils import intersection
 
 logger = logging.getLogger("war-machine")
 
-func_line_regex = re.compile(r"^ft_(\w+)\s*([^ ]+)\s*(OK|KO)$")
+func_line_regex = re.compile(r"^ft_(\w+)\s*(compil\. failed|[^ ]+)\s*(OK|KO)$")
 lines_finder = re.compile(r'(^.*if.*atoi\(argv\[1\]\).* == \d.*$)|(^\s+else if \(arg == \d+\).*$)')
 
 
@@ -122,7 +122,11 @@ class WarMachine():
 		def parse_func(line: str):
 			match = func_line_regex.match(line)
 			if match.group(3) != "OK":
-				self.show_failed_test_code(match.group(1), match.group(2))
+				if match.group(2) == "compil. failed":
+					print(f"{TC.B_RED}Errors{TC.NC} in {TC.BLUE}{match.group(1)}{TC.NC}: the test does not compile "
+					      f"(see {TC.PURPLE}{Path(self.temp_dir, 'deepthought')}{TC.NC})\n")
+				else:
+					self.show_failed_test_code(match.group(1), match.group(2))
 			return (match.group(1), match.group(3))
 
 		def print_file_summary(file):
