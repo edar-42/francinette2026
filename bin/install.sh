@@ -1,14 +1,41 @@
 #!/bin/bash
 
+fail() {
+	echo -e "\033[1;31m$1\033[0m" >&2
+	exit 1
+}
+
+# creates the venv, even without python3-venv/ensurepip (no admin rights needed)
+create_venv() {
+	rm -rf venv
+	python3 -m venv venv >/dev/null 2>&1 && return 0
+
+	echo "python3-venv is not available: installing pip in the virtual environment with get-pip"
+	rm -rf venv
+	python3 -m venv --without-pip venv || return 1
+	local py_version
+	py_version=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+	curl -fsSL https://bootstrap.pypa.io/get-pip.py -o venv/get-pip.py || return 1
+	venv/bin/python venv/get-pip.py --quiet --disable-pip-version-check 2>/dev/null && return 0
+	# get-pip.py refuses the python versions it does not support anymore
+	curl -fsSL "https://bootstrap.pypa.io/pip/$py_version/get-pip.py" -o venv/get-pip.py || return 1
+	venv/bin/python venv/get-pip.py --quiet --disable-pip-version-check
+}
+
 cd "$HOME" || exit
 
+# never replace a folder that is not francinette
+if [ -e "$HOME/francinette" ] && [ ! -f "$HOME/francinette/tester.sh" ]; then
+	fail "~/francinette already exists and is not francinette: move it somewhere else and try again."
+fi
+
+rm -rf temp_____
 mkdir temp_____
 
 cd temp_____ || exit
-rm -rf francinette
 
 # download github
-git clone --recursive https://github.com/edar-42/francinette2026.git francinette
+git clone --recursive https://github.com/edar-42/francinette2026.git francinette || fail "Could not download francinette: nothing was changed."
 
 # install the system packages only if something is missing (no sudo needed at 42)
 has_tools() {
@@ -31,22 +58,22 @@ if [ "$(uname)" != "Darwin" ] && ! has_tools; then
 				;;
 		esac
 	else
-		echo "You don't have admin rights: ask for gcc/clang, make and python3-venv to be installed."
+		echo "You don't have admin rights, so nothing was installed. If the tests do not compile, ask for gcc/clang and make to be installed."
 	fi
 fi
 
-cp -r francinette "$HOME"
-
+# replace the previous install: copying over it fails on its read-only git files
 cd "$HOME" || exit
+rm -rf "$HOME/francinette"
+mv temp_____/francinette "$HOME/francinette" || fail "Could not create ~/francinette."
+
 rm -rf temp_____
 
 cd "$HOME"/francinette || exit
 
 # start a venv inside francinette
-if ! python3 -m venv venv ; then
-	echo "Please make sure than you can create a python virtual environment"
-	echo 'Contact me if you have no idea how to proceed (fsoares- on slack)'
-	exit 1
+if ! create_venv ; then
+	fail "Could not create the python virtual environment: check that python3 is installed and that you have an internet connection."
 fi
 
 # activate venv
@@ -54,8 +81,7 @@ fi
 
 # install requirements
 if ! pip3 install -r requirements.txt ; then
-	echo 'Problem launching the installer. Contact me (fsoares- on slack)'
-	exit 1
+	fail "Problem installing the python dependencies."
 fi
 
 RC_FILE="$HOME/.zshrc"

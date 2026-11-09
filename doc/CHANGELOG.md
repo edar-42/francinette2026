@@ -1,3 +1,12 @@
+## 0.11.2 (2026-11-09) — install
+
+### Fix
+
+- **install**: works without `python3-venv`/`ensurepip` and without admin rights (pip comes from get-pip)
+- **install**: replaces a previous install instead of copying over it, which failed on its read-only git files
+- **install**: stops with a clear message if the download fails, without touching the previous install, or if
+  `~/francinette` is a folder that is not francinette
+
 ## 0.11.1 (2026-11-09) — update
 
 ### Fix

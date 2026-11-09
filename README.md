@@ -13,9 +13,11 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/
 It downloads the repo to `~/francinette`, creates the aliases and installs a Python virtual environment
 dedicated to this tool.
 
-No admin rights needed: if the C compiler, `make` and `python3-venv` are already installed (like on
-the 42 computers), nothing is installed with `sudo`. On your own Linux computer, if something is
-missing and you are an admin, the installer installs it for you.
+No admin rights needed: the C compiler and `make` just have to be installed (like on the 42 computers),
+and `python3-venv` is not required. On your own Linux computer, if something is missing and you are an
+admin, the installer installs it for you.
+
+If you already have francinette, the install replaces `~/francinette`.
 
 ## Update
 
@@ -60,7 +62,7 @@ cases: what should it return for `""`, `"   "` or `"word"`? Don't rely only on `
 
 ## What's new
 
-Version **0.11.1** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
+Version **0.11.2** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
 
 #### :new: 42-auto-tester
 The single-file testers of [42-auto-tester](https://github.com/Elwynn18/42-auto-tester), by [Elwynn18](https://github.com/Elwynn18), are now executed with the other testers for `libft`, `ft_printf`, `get_next_line` and `push_swap`.
