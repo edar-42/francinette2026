@@ -4,6 +4,20 @@ An easy to use testing framework for the 42 projects, updated for the **2025/202
 
 Use `francinette` or `paco` inside a project folder to run it.
 
+```bash
+# Install
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/install.sh)"
+
+# Update
+francinette -u
+
+# Update, if the command above does not work
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
+
+# Run, inside a project folder
+paco
+```
+
 Tests: `libft`, `ft_printf` (v12.1), `get_next_line` (v14.3) and `push_swap` (v1.2).
 
 > This is a fork of the original [Francinette](https://github.com/xicodomingues/francinette) by
@@ -31,7 +45,7 @@ cases: what should it return for `""`, `"   "` or `"word"`? Don't rely only on `
 
 ## What's new
 
-Version **0.11.0** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
+Version **0.11.1** (see [`doc/CHANGELOG.md`](doc/CHANGELOG.md) for the full list).
 
 #### :new: 42-auto-tester
 The single-file testers of [42-auto-tester](https://github.com/Elwynn18/42-auto-tester), by [Elwynn18](https://github.com/Elwynn18), are now executed with the other testers for `libft`, `ft_printf`, `get_next_line` and `push_swap`.
@@ -111,7 +125,7 @@ Francinette asks you when there is a new version. You can also force it:
 ~ $> francinette -u              # Forces francinette to update
 ```
 
-If that does not work:
+If that does not work (for example `Permission denied` on an install older than 0.11.0):
 
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/edar-42/francinette2026/master/bin/update.sh)"
@@ -217,5 +231,5 @@ Then open a new terminal.
 * To [jtoty](https://github.com/jtoty) and [y3ll0w42](https://github.com/y3ll0w42) for [libft-war-machine](https://github.com/y3ll0w42/libft-war-machine)
 * To [alelievr](https://github.com/alelievr) for [libft-unit-test](https://github.com/alelievr/libft-unit-test) and [printf-unit-test](https://github.com/alelievr/printf-unit-test)
 * To [cacharle](https://github.com/cacharle) for [ft_printf_test](https://github.com/cacharle/ft_printf_test)
-* To [Elwynn18](https://github.com/Elwynn18) (Theodore Bailly) for [42-auto-tester](https://github.com/Elwynn18/42-auto-tester)
+* To [Elwynn18](https://github.com/Elwynn18) for [42-auto-tester](https://github.com/Elwynn18/42-auto-tester)
 * To [ombhd](https://github.com/ombhd) for [Cleaner_42](https://github.com/ombhd/Cleaner_42)

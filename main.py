@@ -150,8 +150,7 @@ def main():
 		root.addHandler(handler)
 
 	if args.update:
-		do_update()
-		exit(0)
+		exit(do_update())
 
 	update_paco()
 

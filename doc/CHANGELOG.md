@@ -1,3 +1,12 @@
+## 0.11.1 (2026-11-09) — update
+
+### Fix
+
+- **update**: `francinette -u` failed with `Permission denied` when the scripts were not executable
+- **update**: the old repository url made the update fail while saying "Francinette is updated". The url is now
+  corrected, and the update stops with a clear message if the download fails
+- **update**: clear message when francinette is not installed, has no `.git` or has no venv
+
 ## 0.11.0 (2026-11-08) — 42-auto-tester
 
 ### Feat
